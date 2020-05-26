@@ -8,6 +8,7 @@ package common;
 import annotations.Column;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,7 +43,7 @@ public class ReflectClass {
             Map<String, Method> getterResults = new HashMap<>();
             
             for (Method method : methods) {
-                if (method.getName().startsWith("get")){
+                if (Modifier.isPublic(method.getModifiers()) && method.getName().startsWith("get")){
                     String name = method.getName().replace("get", "").toLowerCase();
                     getterResults.put(name, method);
                 }

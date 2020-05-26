@@ -251,7 +251,6 @@ public abstract class Builder<T> {
         
         // 构建 sql
         String sql = this.generateSelectSql() + " limit 1";
-        System.out.println(sql);
         
         ReflectClass c = new ReflectClass(this.getClass());
         Map<String, Method> setterMethods = c.getSetterMethods();

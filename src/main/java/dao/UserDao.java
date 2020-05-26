@@ -6,6 +6,7 @@
 package dao;
 
 import annotations.Column;
+import common.Hash;
 
 /**
  *
@@ -60,12 +61,12 @@ public class UserDao extends Dao<UserDao> {
         this.email = email;
     }
     
-    public String getPassword() {
+    private String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = Hash.encrypt(password);
     }
 
     public String getPhone() {
@@ -82,5 +83,16 @@ public class UserDao extends Dao<UserDao> {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+    
+    /**
+     * check the password is equals with that in database
+     * @param password
+     * @return Boolean
+     */
+    public Boolean authorize(String password) {
+        // 加密两次，解决从数据库取出时 setPassword 再次加密问题
+        String encrypt = Hash.encrypt(Hash.encrypt(password));
+        return encrypt.equals(this.getPassword());
     }
 }
