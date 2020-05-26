@@ -61,7 +61,7 @@ public class UserDao extends Dao<UserDao> {
         this.email = email;
     }
     
-    private String getPassword() {
+    public String getPassword() {
         return password;
     }
 
