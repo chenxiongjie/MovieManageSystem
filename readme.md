@@ -24,7 +24,7 @@ class UserDao extends Dao<UserDao> {
   @Column(type = "String")
   private String name;
   
-	public UserDao () {
+  public UserDao () {
     super(table);
   }
   
@@ -71,7 +71,7 @@ ArrayList<UserDao> users = new UserDao()
  * @method order(String column, String order)
  */
 ArrayList<UserDao> users = new UserDao()
-  			.order("id", "desc")
+        .order("id", "desc")
         .get();
 
 /**
@@ -84,7 +84,7 @@ ArrayList<UserDao> users = new UserDao()
         .where("name", "=", "Demo")
         .orWhere("id", ">", 1)
         .paginate(1, 10)
-  			.get();
+        .get();
 ```
 
 #### 增、改
