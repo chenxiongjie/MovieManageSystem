@@ -13,6 +13,13 @@ import annotations.Column;
  */
 public class RoomDao extends Dao<RoomDao> {
     private static String table = "rooms";
+
+    public static String getName(String name) {
+        return name;
+    }
+    public static String getSeats(String seats) {
+        return seats;
+    }
     
     @Column(type = "Number")
     private Number id;
@@ -49,5 +56,13 @@ public class RoomDao extends Dao<RoomDao> {
 
     public void setSeats(int seats) {
         this.seats = seats;
+    }
+
+    public void setSeats(String seats) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setId(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
