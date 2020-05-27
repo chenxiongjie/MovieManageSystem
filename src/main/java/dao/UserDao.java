@@ -66,7 +66,7 @@ public class UserDao extends Dao<UserDao> {
     }
 
     public void setPassword(String password) {
-        this.password = Hash.encrypt(password);
+        this.password = password;
     }
 
     public String getPhone() {
@@ -92,7 +92,7 @@ public class UserDao extends Dao<UserDao> {
      */
     public Boolean authorize(String password) {
         // 加密两次，解决从数据库取出时 setPassword 再次加密问题
-        String encrypt = Hash.encrypt(Hash.encrypt(password));
+        String encrypt = Hash.encrypt(password);
         return encrypt.equals(this.getPassword());
     }
 }

@@ -166,9 +166,7 @@ public abstract class Builder<T> {
             
             String sql = "update " + this.getTable() + " set" + " " + String.join(", ", sets) + " where id = " + id;
             
-            long newId = ConnectionFactory.queryReturnPrimaryKey(sql);
-
-            if (newId > 0) {
+            if (ConnectionFactory.queryReturnBoolean(sql)) {
                 return this;
             }
         } catch (Exception e) {

@@ -5,6 +5,7 @@
  */
 package views.user;
 
+import common.Global;
 import common.Validator;
 import dao.UserDao;
 import views.Demo;
@@ -20,7 +21,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -149,12 +150,13 @@ public class Login extends javax.swing.JFrame {
             return;
         }
         
+        Global.user = user;
         this.jLabel3.setText("登陆成功");
         dispose();
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Demo().setVisible(true);
+                new Home().setVisible(true);
             }
         });
     }//GEN-LAST:event_jButton1ActionPerformed

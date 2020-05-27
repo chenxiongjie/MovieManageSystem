@@ -1,5 +1,6 @@
 package views.user;
 
+import common.Hash;
 import common.Validator;
 import dao.UserDao;
 
@@ -20,7 +21,7 @@ public class Register extends javax.swing.JFrame {
      */
     public Register() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -256,7 +257,7 @@ public class Register extends javax.swing.JFrame {
         UserDao user = (UserDao) new UserDao();
         user.setName(name);
         user.setEmail(email);
-        user.setPassword(password);
+        user.setPassword(Hash.encrypt(password));
         user.setPhone(password);
         
         if (user.create() != null) {
