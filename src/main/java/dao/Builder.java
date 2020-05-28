@@ -22,7 +22,7 @@ public abstract class Builder<T> {
     private String order = "";
     private String paginate = "";
     private String table;
-    
+     
     public Builder (String table) {
         this.table = table;
     }

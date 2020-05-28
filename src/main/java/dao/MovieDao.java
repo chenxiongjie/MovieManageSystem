@@ -6,6 +6,7 @@
 package dao;
 
 import annotations.Column;
+import java.math.BigDecimal;
 
 /**
  *
@@ -32,8 +33,8 @@ public class MovieDao extends Dao<MovieDao>{
     @Column(type = "String")
     private String type;
     
-    @Column(type = "Float")
-    private Float price;
+    @Column(type = "BigDecimal")
+    private BigDecimal price;
     
     public MovieDao () {
         super(table);
@@ -87,11 +88,11 @@ public class MovieDao extends Dao<MovieDao>{
         this.type = type;
     }
 
-    public Float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 }
