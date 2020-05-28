@@ -46,7 +46,7 @@ public class MovieList extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    private void fillTable() {
+    public void fillTable() {
         this.tableModel.setRowCount(0);
 
         String id = this.jTextField1.getText();
@@ -245,30 +245,37 @@ public class MovieList extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        dispose();
+        this.jLabel6.setText("");
+        MovieList _this = this;
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MovieEdit().setVisible(true);
+                new MovieEdit(_this).setVisible(true);
             }
         });
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        this.jLabel6.setText("");
         int selected = this.jTable1.getSelectedRow();
         if (selected >= 0) {
+            
             MovieDao movie = this.movies.get(selected);
-            dispose();
+            MovieList _this = this;
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new MovieEdit(movie).setVisible(true);
+                    new MovieEdit(_this, movie).setVisible(true);
                 }
             });
+        } else {
+            this.jLabel6.setText("请先选择要修改的数据");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        this.jLabel6.setText("");
         int selected = this.jTable1.getSelectedRow();
         if (selected >= 0) {
             MovieDao movie = this.movies.get(selected);

@@ -10,6 +10,7 @@ import dao.MovieDao;
 import java.math.BigDecimal;
 import javax.swing.InputVerifier;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 /**
@@ -20,6 +21,7 @@ public class MovieEdit extends javax.swing.JFrame {
     
     private boolean isNew = true;
     private MovieDao movie;
+    private MovieList listFrame;
     /**
      * Creates new form MovieEdit
      */
@@ -28,9 +30,16 @@ public class MovieEdit extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    public MovieEdit(MovieDao movie) {
+    public MovieEdit(MovieList listFrame) {
         initComponents();
         setLocationRelativeTo(null);
+        this.listFrame = listFrame;
+    }
+    
+    public MovieEdit(MovieList listFrame, MovieDao movie) {
+        initComponents();
+        setLocationRelativeTo(null);
+        this.listFrame = listFrame;
         this.movie = movie;
         fill();
     }
@@ -62,7 +71,12 @@ public class MovieEdit extends javax.swing.JFrame {
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setText("电影名：");
 
@@ -283,12 +297,17 @@ public class MovieEdit extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         dispose();
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MovieList().setVisible(true);
-            }
-        });
+        if (this.listFrame != null) {
+            this.listFrame.fillTable();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        if (this.listFrame != null) {
+            this.listFrame.fillTable();
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
